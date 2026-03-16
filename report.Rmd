@@ -120,9 +120,9 @@ figures. Until you've completed all the parts, you may safely leave these
 captions blank.
 
 ```{r code block to create descriptive captions}
-caption_4 <- 'Descriptive Caption for part 4 here'
-caption_5 <- 'Descriptive Caption for part 5 here'
-caption_8 <- 'Descriptive Caption for part 8 here'
+caption_4 <- 'Variance explained for each principal component (bars) and the cumulative sum (line)'
+caption_5 <- 'BiPlot of variance of PC1 and PC2'
+caption_8 <- 'Heatmap of normalized intensity values for diffentially expressed probes'
 ```
 
 ## 4. Plot the variance explained and cumulative variance for the PCs
@@ -141,6 +141,13 @@ numeric ordering.
 
 ```{r code block to plot variance explained and cumulative variance explained, fig.cap = caption_4}
 #Create a ggplot2 with the plot described above, refer to the reference report
+ggplot(variance_tibble) + 
+  geom_bar(aes(x=principal_components, y=variance_explained), stat='identity') +
+  geom_line(aes(x=principal_components, y=cumulative), group =1) +
+  geom_point(aes(x=principal_components, y=cumulative), group =1 ) +
+  theme(
+    axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)
+  )
 
 ```
 
